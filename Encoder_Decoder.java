@@ -4,8 +4,8 @@ public class Encoder_Decoder {
     public static void main(String[] args) {
         try {
             // Original query parameters
-            String name = "John Doe";
-            String city = "New York";
+            String name = "Nishant Sen";
+            String city = "Kotihawa, Rupendehi";
             String search = "Java Programming @ 2025";
 
             System.out.println("=== ORIGINAL VALUES ===");
@@ -22,15 +22,6 @@ public class Encoder_Decoder {
             System.out.println("Name   : " + encodedName);
             System.out.println("City   : " + encodedCity);
             System.out.println("Search : " + encodedSearch);
-
-            // Build encoded URL
-            String encodedURL = "https://example.com/search?"
-                    + "name=" + encodedName
-                    + "&city=" + encodedCity
-                    + "&q=" + encodedSearch;
-
-            System.out.println("\nEncoded URL:");
-            System.out.println(encodedURL);
 
             // --- DECODING BACK ---
             String decodedName = URLDecoder.decode(encodedName, "UTF-8");
