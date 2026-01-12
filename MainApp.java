@@ -39,15 +39,15 @@ public class MainApp {
 
         UserManager um = new UserManager();
 
-        System.out.println("Register user: " + um.addUser("nishant", "12345"));
-        System.out.println("Register same user again: " + um.addUser("nishant", "67890"));
+        System.out.println("Register user: " + um.addUser("nishant", "1234"));
+        System.out.println("Register same user again: " + um.addUser("nishant", "12345"));
 
-        System.out.println("Login with correct password: " + um.checkUser("nishant", "12345"));
+        System.out.println("Login with correct password: " + um.checkUser("nishant", "1234"));
         System.out.println("Login with wrong password: " + um.checkUser("nishant", "wrong"));
 
-        System.out.println("Change password: " + um.changePassword("nishant", "12345", "99999"));
-        System.out.println("Login with new password: " + um.checkUser("nishant", "99999"));
+        System.out.println("Change password: " + um.changePassword("nishant", "1234", "99"));
+        System.out.println("Login with new password: " + um.checkUser("nishant", "99"));
 
-        System.out.println("Delete user: " + um.removeUser("nishant", "99999"));
+        System.out.println("Delete user: " + um.removeUser("nishant", "99"));
     }
 }
