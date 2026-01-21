@@ -1,58 +1,58 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class Authenticator {
 
-    // Stores username → password pairs
-    private Map<String, String> users;
+    // Instance variables
+    private final String username;
+    private final String password;
+    private boolean loggedIn;
 
     // Constructor
-    public Authenticator() {
-        users = new HashMap<>();
+    public Authenticator(String username, String password) {
+        this.username = username;
+        this.password = password;
+        this.loggedIn = false;
     }
 
-    /**
-     * Registers a new user with a username and password.
-     * Returns true if registration is successful.
-     */
-    public boolean register(String username, String password) {
-        if (users.containsKey(username)) {
-            return false; // User already exists
+    // Method to authenticate user
+    public boolean authenticate(String inputUsername, String inputPassword) {
+
+        if (inputUsername == null || inputPassword == null) {
+            return false;
         }
-        users.put(username, password);
-        return true;
-    }
 
-    /**
-     * Authenticates a user.
-     * Returns true if username exists and password matches.
-     */
-    public boolean login(String username, String password) {
-        if (!users.containsKey(username)) {
-            return false; // User not found
-        }
-        return users.get(username).equals(password);
-    }
+        if (this.username.equals(inputUsername) &&
+            this.password.equals(inputPassword)) {
 
-    /**
-     * Updates password for an existing user.
-     */
-    public boolean updatePassword(String username, String oldPassword, String newPassword) {
-        if (login(username, oldPassword)) {   // reuse login() for verification
-            users.put(username, newPassword);
+            loggedIn = true;
             return true;
         }
+
         return false;
     }
 
-    /**
-     * Removes a user from the system.
-     */
-    public boolean deleteUser(String username, String password) {
-        if (login(username, password)) {
-            users.remove(username);
-            return true;
+    // Method to check authentication status
+    public boolean isAuthenticated() {
+        return loggedIn;
+    }
+
+    // Method to logout
+    public void logout() {
+        loggedIn = false;
+    }
+
+    // Main method (Testing)
+    public static void main(String[] args) {
+
+        Authenticator auth = new Authenticator("admin", "admin123");
+
+        if (auth.authenticate("admin", "admin123")) {
+            System.out.println("Login successful");
+        } else {
+            System.out.println("Login failed");
         }
-        return false;
+
+        System.out.println("Authenticated: " + auth.isAuthenticated());
+
+        auth.logout();
+        System.out.println("Authenticated after logout: " + auth.isAuthenticated());
     }
 }
